@@ -3,7 +3,8 @@
 @section('header','Nuevo Producto')
 @section('content')
 
-<form action=""method="post">
+<form action="{{route('product.save')}}"method="post">
+    @csrf
     <div class="row mb-3">
         <label for="name" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">

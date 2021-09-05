@@ -15,4 +15,16 @@ class ProductController extends Controller
     function form(){
         return view('product/form');
     }
+    function save(Request $request){
+        $product =new Product();
+        $product->name = $request->name;
+        $product->cost = $request->cost;
+        $product->price = $request->price;
+        $product->quantity = $request->quantity;
+        $product->brand = $request->brand;
+
+        $product->save();
+
+        return redirect('/products');
+    }
 }
