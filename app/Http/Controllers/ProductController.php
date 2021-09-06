@@ -16,6 +16,16 @@ class ProductController extends Controller
         return view('product/form');
     }
     function save(Request $request){
+
+        $request-> validate([
+            "name"=>'required|max:50',
+            "cost"=>'required|numeric',
+            "price"=>'required|numeric',
+            "quantity"=>'required|numeric',
+            "brand"=>'required|max:50',
+
+        ]);
+
         $product =new Product();
         $product->name = $request->name;
         $product->cost = $request->cost;
@@ -25,6 +35,12 @@ class ProductController extends Controller
 
         $product->save();
 
+        return redirect('/products');
+    }
+
+    function delete($id){
+        $product=product::findOrFail($id);
+        $product->delete();
         return redirect('/products');
     }
 }
